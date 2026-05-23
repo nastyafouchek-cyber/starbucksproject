@@ -9,12 +9,15 @@ body {
     background-color: #0b0e11;
     color: #ffffff;
     overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     margin: 0;
+}
+
+.banner,
+.about-section,
+.events,
+.news {
+    width: 100%;
 }
 
 .container {
@@ -54,6 +57,10 @@ header {
 
 .burger-menu {
     display: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
 }
 
 .hero-section {
@@ -87,6 +94,12 @@ h1 span {
     margin-bottom: 60px;
     margin-top: 50px;
     line-height: 1.6; 
+}
+
+.hero-title-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 .btn-group { 
@@ -399,19 +412,22 @@ h1 span {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 32px;
     margin-bottom: 40px;
 }
 
 .news-title-img {
-    position: absolute;
+    display: block;
+    flex-shrink: 0;
     max-height: 120px;
     width: auto;
 }
 
 .news-description {
+    flex: 1;
     max-width: 450px;
     text-align: right;
-    margin: 0 auto;
+    margin: 0;
     font-size: 18px;
     line-height: 1.5;
     color: #cccccc;
@@ -433,19 +449,79 @@ h1 span {
 .swiper-slide{
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transform: scale(0.8) !important;
- 
+    transform-origin: center center;
 }
 .swiper-slide-active{
-    transform: scale(1.1) !important
+    transform: scale(1.1) !important;
 }
 .swiper-slide img{
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     display: block;
 }
 
 
+
+
+
+
+.contacts-title-img {
+    display: block;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 60px;
+}
+
+.contacts-descr {
+    max-width: 450px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #cccccc;
+    margin-bottom: 40px;
+}
+
+.contacts-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+
+.contacts-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.social-img {
+    max-width: 280px;
+    height: auto;
+}
+
+.contacts-visual {
+    justify-self: end;
+}
+
+.main-photo {
+    display: block;
+    width: 105%;
+    max-width: 600px; 
+    height: auto;
+}
+
+.waves-decor {
+    position: absolute;
+    z-index: -1;
+    width: 900px;
+    right: 0px;
+    margin-top: 100px;
+}
 
 
 
@@ -461,27 +537,104 @@ h1 span {
 
 
 @media (max-width: 992px) {
+    header {
+        position: relative;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
     .nav-menu {
         display: none;
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px;
+        background: rgba(11, 14, 17, 0.98);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        z-index: 30;
     }
+
+    .nav-menu.is-open {
+        display: flex;
+    }
+
+    .nav-menu a {
+        font-size: 18px;
+    }
+
     .burger-menu {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         width: 25px;
+        gap: 5px;
+        z-index: 31;
     }
     .burger-menu span {
         display: block;
+        width: 100%;
         height: 2px;
         background: #00a862;
-        margin: 5px 0;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .burger-menu.is-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .burger-menu.is-open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-menu.is-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
     
     .hero-section {
         flex-direction: column-reverse;
         text-align: center;
+        gap: 24px;
+        padding: 24px 0;
     }
+
+    .hero-section > div {
+        width: 100%;
+    }
+
     .hero-image {
         justify-content: center;
         margin-bottom: 30px;
+        width: 100%;
+        min-height: 320px;
+        overflow: hidden;
+    }
+
+    .main-cup {
+        max-width: 320px;
+    }
+
+    .description {
+        max-width: 100%;
+        margin: 24px 0 32px;
+    }
+
+    .hero-title-img {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .btn-image img {
+        max-width: 100%;
+        height: auto;
     }
     .hero-text {
         text-align: left;
@@ -492,11 +645,14 @@ h1 span {
 
     .btn-group {
         flex-direction: column;
+        align-items: stretch;
+        margin: 32px 0;
     }
 
     .stats {
         justify-content: space-between;
         gap: 10px;
+        align-items: flex-start;
     }
     .stat-img {
         height: 60px;
@@ -506,15 +662,76 @@ h1 span {
         gap: 15px;
         padding: 30px 10px 20px;
         align-items: center;
+        width: 100%;
+        margin-top: 40px;
     }
     .we-have-badge {
         left: 30px;
         width: 200px;
     }
     .bg-lines {
-        width: 200%; 
-        top: 10%;
+        width: 135%;
+        max-width: 440px;
+        top: 42%;
+        left: 54%;
+        transform: translate(-50%, -50%);
     }
+
+    .about-content-wrapper {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .about-image-wrapper,
+    .about-content {
+        width: 100%;
+    }
+
+    .interior-img {
+        width: 100%;
+    }
+
+    .about-badge {
+        top: -20px;
+        right: 0;
+        width: 140px;
+    }
+
+    .about-content {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .about-content img:first-child {
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    .about-description {
+        max-width: 80%;
+    }
+
+    .video-preview {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .video-img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .play-btn img {
+        width: 100px;
+    }
+
+    .about-lines {
+        width: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 180px;
+    }
+
     .events-header {
         flex-direction: column;
         justify-content: flex-start;
@@ -546,6 +763,24 @@ h1 span {
         margin-top: 20px;
     }
 
+    .news-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .news-title-img {
+        max-height: 70px;
+    }
+
+    .news-description {
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .swiper {
+        height: 520px;
+    }
+
     .event-cards {
         grid-template-columns: 1fr;
     }
@@ -554,4 +789,134 @@ h1 span {
         grid-column: span 1;
         height: 220px;
     }
+
+
+    .contacts-wrapper {
+        flex-direction: column;
+    }
+
+    .contacts-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contacts-title-img {
+        max-width: 35%;
+        margin-bottom: 40px;
+    }
+
+    .contacts-descr {
+        margin: 0 auto 30px;
+        font-size: 16px;
+    }
+
+    .social-img {
+        max-width: 300px;
+    }
+
+    .contacts-visual {
+        margin-right: 0;
+        width: 100%;
+        display: flex;
+    }
+
+    .main-photo {
+        max-width: 80%; 
+        margin-top: 80px;
+        height: auto;
+    }
+    
+    .waves-decor {
+        display: none;
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+@media (max-width: 576px) {
+    .container {
+        padding: 12px;
+    }
+
+    .main-cup {
+        max-width: 260px;
+    }
+
+    .bg-lines {
+        width: 140%;
+        max-width: 360px;
+        top: 40%;
+        left: 55%;
+    }
+
+    .we-have-badge {
+        left: 16px;
+        width: 140px;
+    }
+
+    .feature-icon {
+        width: 150px;
+    }
+
+    .stats {
+        gap: 16px;
+    }
+
+    .stat-item {
+        flex: 1;
+    }
+
+    .hero-title-img {
+        max-width: 100%;
+    }
+
+    .about-section,
+    .events,
+    .news {
+        padding: 40px 0;
+    }
+
+    .about-lines {
+        width: 140%;
+        top: 140px;
+    }
+
+    .header-lines {
+        width: 100%;
+        left: 0;
+    }
+
+    .news-title-img {
+        max-height: 56px;
+        max-width: 100%;
+    }
+
+    .news-description,
+    .events-description,
+    .about-description,
+    .description {
+        font-size: 16px;
+    }
+
+    .swiper {
+        height: 360px;
+        overflow: hidden;
+    }
+
+    .swiper-slide {
+        transform: scale(1) !important;
+    }
+
+    .swiper-slide-active {
+        transform: scale(1) !important;
+    }
+}
+
